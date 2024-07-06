@@ -10,17 +10,18 @@ Numerical-Differentiation
 │   └── Numerical-differention.pdf
 ├── Makefile
 ├── README.md
-└── src
-    ├── docs
+src
     ├── include
     │   ├── BackwardDerivative.h
     │   ├── CentralDerivative.h
+    │   ├── CudaMathFunctions.h
     │   ├── ForwardDerivative.h
     │   └── MathFunctions.h
     ├── main.cpp
     ├── src
     │   ├── BackwardDerivative.cpp
     │   ├── CentralDerivative.cpp
+    │   ├── CudaMathfunctions.cu
     │   ├── ForwardDerivative.cpp
     │   └── MathFunctions.cpp
     └── tests
