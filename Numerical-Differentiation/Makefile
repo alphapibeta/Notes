@@ -8,25 +8,32 @@ TESTFLAGS = -lgtest -lgtest_main -pthread
 # Define executables
 EXEC = derivative
 CUDA_EXEC = derivative_cuda
+TOPOLOGY_EXEC = topology
 TEST_EXEC = runTests
 
 # Source and CUDA files
 SRC_FILES = $(wildcard src/src/*.cpp)
+TOPOLOGY_SRC_FILES = src/src/Topology.cpp
 CUDA_SRC_FILES = $(wildcard src/src/*.cu)
 TEST_SRC_FILES = $(wildcard src/tests/*.cpp)
 MAIN_SRC_FILE = src/main.cpp
 
 # Object files
 OBJS = $(SRC_FILES:.cpp=.o) $(MAIN_SRC_FILE:.cpp=.o)
+TOPOLOGY_OBJS = $(TOPOLOGY_SRC_FILES:.cpp=.o)
 CUDA_OBJS = $(CUDA_SRC_FILES:.cu=.o)
 TEST_OBJS = $(filter-out $(MAIN_SRC_FILE:.cpp=.o), $(OBJS)) $(TEST_SRC_FILES:.cpp=.o)
 
 # Default target
-all: $(CUDA_EXEC)
+all: $(CUDA_EXEC) $(TOPOLOGY_EXEC)
 
 # CUDA build target
 $(CUDA_EXEC): $(OBJS) $(CUDA_OBJS)
 	$(NVCC) $(LDFLAGS) -o $@ $^
+
+# Topology build target
+$(TOPOLOGY_EXEC): $(OBJS) $(TOPOLOGY_OBJS) $(CUDA_OBJS)
+	$(NVCC) $(LDFLAGS) -o $@ $^ -lcudart
 
 # Build the main executable (only when needed)
 build_main: $(EXEC)
@@ -50,6 +57,6 @@ $(TEST_EXEC): $(TEST_OBJS)
 
 # Clean target
 clean:
-	rm -f $(OBJS) $(CUDA_OBJS) $(TEST_OBJS) $(EXEC) $(CUDA_EXEC) $(TEST_EXEC)
+	rm -f $(OBJS) $(TOPOLOGY_OBJS) $(CUDA_OBJS) $(TEST_OBJS) $(EXEC) $(CUDA_EXEC) $(TOPOLOGY_EXEC) $(TEST_EXEC)
 
 .PHONY: all clean build_tests build_main run_tests

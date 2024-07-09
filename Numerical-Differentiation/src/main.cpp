@@ -1,9 +1,24 @@
 #include <iostream>
 #include "CudaMathFunctions.h"
 #include "nvToolsExt.h"
-
+// #include "MathFunctions.h"
+#include "Topology.h"
 int main() {
-    const int size = 1024;
+
+
+    std::set<int> X = {1, 2, 3};
+    std::vector<std::set<int>> openSets = {
+        {}, {1}, {1, 2}, {1, 2, 3}
+    };
+    Topology topology(X, openSets);
+
+    std::set<int> testSet = {1, 2};
+    std::cout << "Is {1, 2} an open set? " << (topology.is_open_set(testSet) ? "Yes" : "No") << std::endl;
+
+    // Add any numerical differentiation functionality here if needed
+
+
+    const int size = 10;
     double xs[size], h = 0.01;
     double sin_values[size], sin_values_plus_h[size], sin_values_minus_h[size];
     double exp_values[size], exp_values_plus_h[size], exp_values_minus_h[size];
@@ -60,3 +75,5 @@ int main() {
 
     return 0;
 }
+
+
