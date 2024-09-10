@@ -1,0 +1,729 @@
+buildDirectory,kernelName,blockSizeX,blockSizeY,totalThreads,smFrequencyCyclePerUsecond,elapsedCycles,memoryThroughputPercent,dramThroughputPercent,durationUsecond,l1TexCacheThroughputPercent,l2CacheThroughputPercent,smActiveCycles,computeSMThroughputPercent,blockSize,gridSize,registersPerThread,sharedMemoryConfigSizeKbyte,driverSharedMemoryPerBlockByte,dynamicSharedMemoryPerBlockKbyte,staticSharedMemoryPerBlockByte,wavesPerSM,blockLimitSm,blockLimitRegisters,blockLimitSharedMem,blockLimitWarps,theoreticalActiveWarpsPerSm,theoreticalOccupancyPercent,achievedOccupancyPercent,achievedActiveWarpsPerSm,warningsWrn,informationInf,optimizationHintsOpt
+./heat_equation_solver/build,gpu_kernel,1,1,1,961.650000,757441,18.390000,0.410000,787.55,18.590000,6.550000,750684,40.990000,1,262144,22,0.032002,0,0.000000,0,546.130000,16,84,16,32,16,50.000000,41.580000,13.310000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 96.88%                                                                                          
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 1      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,2,2,958.970000,406779,17.150000,0.760000,424.1,17.450000,6.900000,399984,38.290000,2,131072,22,0.032002,0,0.000000,0,273.070000,16,84,16,32,16,50.000000,40.930000,13.100000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 93.75%                                                                                          
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 2      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,4,4,959.710000,245135,14.230000,1.260000,255.36,15.860000,6.290000,219957,31.780000,4,65536,22,0.032002,0,0.000000,0,136.530000,16,84,16,32,16,50.000000,38.390000,12.290000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 87.5%                                                                                           
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 4      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 23.21%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (38.4%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,8,8,953.160000,128796,13.550000,2.400000,135.04,15.920000,6.170000,109572,30.260000,8,32768,22,0.032002,0,0.000000,0,68.270000,16,84,16,32,16,50.000000,40.820000,13.060000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 75%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 8      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,16,16,977.950000,69957,12.490000,4.410000,71.39,14.910000,9.800000,58487,27.910000,16,16384,22,0.032002,0,0.000000,0,34.130000,16,84,16,32,16,50.000000,40.900000,13.090000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 50%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 16     
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,32,32,943.010000,37947,16.370000,8.120000,40.06,13.890000,16.370000,31390,25.820000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,40.170000,12.860000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,1,64,64,876.360000,19708,27.430000,15.370000,22.3,24.390000,27.430000,17880,49.960000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,82.020000,26.250000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 17.98%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (82.0%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,1,128,128,890.400000,19041,30.140000,15.900000,21.18,25.590000,30.140000,17037,51.830000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,86.020000,27.530000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.98%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.0%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,1,256,256,901.730000,19391,29.540000,15.570000,21.31,25.130000,29.540000,17355,50.870000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,86.300000,27.610000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.7%                                                                                     
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.3%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,1,512,512,899.370000,20297,28.050000,14.990000,22.37,24.220000,28.050000,18005,48.600000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,86.000000,27.520000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14%                                                                                       
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.0%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,1,1024,1024,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+./heat_equation_solver/build,gpu_kernel,2,1,2,953.870000,412200,16.930000,0.750000,431.97,30.110000,10.580000,409082,37.790000,2,131072,22,0.032002,0,0.000000,0,273.070000,16,84,16,32,16,50.000000,39.440000,12.620000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 93.75%                                                                                          
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 2      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 21.11%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (39.4%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,2,2,4,961.000000,242237,14.430000,1.280000,252.03,25.930000,9.920000,222226,32.260000,4,65536,22,0.032002,0,0.000000,0,136.530000,16,84,16,32,16,50.000000,37.620000,12.040000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 87.5%                                                                                           
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 4      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 24.76%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (37.6%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,2,4,8,961.340000,129751,13.480000,2.380000,134.82,24.460000,10.670000,110334,30.150000,8,32768,22,0.032002,0,0.000000,0,68.270000,16,84,16,32,16,50.000000,39.780000,12.730000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 75%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 8      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 20.44%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (39.8%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,2,8,16,962.370000,69181,12.660000,4.460000,71.71,23.370000,10.150000,57584,28.330000,16,16384,22,0.032002,0,0.000000,0,34.130000,16,84,16,32,16,50.000000,41.020000,13.130000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 50%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 16     
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,2,16,32,958.340000,37372,15.270000,8.260000,38.82,22.560000,15.270000,30449,26.300000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,40.980000,13.110000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,2,32,64,881.260000,20083,23.580000,15.030000,22.59,42.770000,23.580000,17999,49.190000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,80.980000,25.910000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 19.02%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (81.0%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,2,64,128,882.470000,18722,24.550000,16.100000,21.02,46.050000,24.550000,16857,52.840000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,85.720000,27.430000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14.28%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (85.7%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,2,128,256,908.210000,19685,22.700000,15.440000,21.47,43.890000,22.700000,17355,50.270000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,85.800000,27.460000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14.2%                                                                                     
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (85.8%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,2,256,512,872.450000,19963,22.100000,15.220000,22.66,42.760000,21.970000,17766,49.600000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,85.700000,27.420000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14.3%                                                                                     
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (85.7%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,2,512,1024,899.590000,22400,19.820000,13.650000,24.64,37.840000,19.820000,18257,44.230000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,92.510000,29.600000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,4,1,4,959.930000,220508,26.580000,1.400000,229.54,53.160000,17.940000,215362,35.340000,4,65536,22,0.032002,0,0.000000,0,136.530000,16,84,16,32,16,50.000000,39.250000,12.560000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 87.5%                                                                                           
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 4      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 21.51%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (39.2%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,4,2,8,958.410000,130040,23.010000,2.370000,135.49,46.010000,16.840000,116070,30.090000,8,32768,22,0.032002,0,0.000000,0,68.270000,16,84,16,32,16,50.000000,38.940000,12.460000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 75%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 8      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 22.13%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (38.9%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,4,4,16,954.830000,70479,21.610000,4.380000,73.6,43.220000,17.780000,61823,27.810000,16,16384,22,0.032002,0,0.000000,0,34.130000,16,84,16,32,16,50.000000,39.710000,12.710000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 50%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 16     
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 20.59%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (39.7%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,4,8,32,913.090000,35841,22.020000,8.600000,39.04,44.050000,17.910000,32036,27.430000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,39.990000,12.800000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 20.02%                                                                                    
+          The difference between calculated theoretical (50.0%) and measured achieved occupancy (40.0%) can be the      
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,4,16,64,873.900000,22185,35.870000,13.680000,25.15,71.740000,22.110000,19876,44.540000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,83.740000,26.800000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 16.26%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (83.7%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,4,32,128,883.060000,22312,35.650000,13.640000,25.02,71.300000,19.310000,20437,44.350000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,87.170000,27.890000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.83%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.2%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,4,64,256,894.780000,22882,34.750000,13.340000,25.34,69.500000,17.310000,20493,43.220000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,86.750000,27.760000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.25%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.8%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,4,128,512,892.490000,23859,33.310000,12.810000,26.5,66.620000,15.880000,21191,41.450000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,86.040000,27.530000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.96%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.0%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,4,256,1024,919.470000,26357,30.180000,11.640000,28.45,60.360000,14.190000,22011,37.470000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,89.140000,28.530000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 10.86%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (89.1%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,8,1,8,953.480000,127599,43.720000,2.420000,133.5,87.450000,29.350000,126074,30.600000,8,32768,22,0.032002,0,0.000000,0,68.270000,16,84,16,32,16,50.000000,43.300000,13.850000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 75%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 8      
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,8,2,16,930.470000,71290,39.850000,4.330000,76.29,79.700000,28.870000,68782,27.530000,16,16384,22,0.032002,0,0.000000,0,34.130000,16,84,16,32,16,50.000000,42.290000,13.530000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 50%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 16     
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,8,4,32,939.080000,39483,36.740000,7.810000,41.7,73.490000,29.550000,35976,24.970000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,42.170000,13.490000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,8,8,64,930.290000,32814,44.350000,9.340000,35.01,88.690000,26.190000,30694,30.060000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,89.410000,28.610000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 10.59%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (89.4%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,8,16,128,936.980000,32855,44.450000,9.340000,34.85,88.890000,19.930000,30608,30.010000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,89.600000,28.670000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 10.4%                                                                                     
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (89.6%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,8,32,256,926.830000,33310,43.980000,9.230000,35.62,87.960000,17.180000,30798,29.690000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,86.300000,27.620000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.7%                                                                                     
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.3%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,8,64,512,929.820000,34321,42.360000,8.970000,36.64,84.720000,15.510000,31489,28.770000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,85.420000,27.330000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14.58%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (85.4%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,8,128,1024,926.040000,37660,38.380000,8.190000,40.38,76.760000,13.390000,32608,26.210000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,90.680000,29.020000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,16,1,16,958.110000,112584,47.890000,2.740000,117.15,95.790000,32.800000,110199,17.360000,16,16384,22,0.032002,0,0.000000,0,34.130000,16,84,16,32,16,50.000000,46.820000,14.980000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Speedup: 50%                                                                                             
+          Threads are executed in groups of 32 threads called warps. This kernel launch is configured to execute 16     
+          threads per block. Consequently, some threads in a warp are masked off and those hardware resources are       
+          unused. Try changing the number of threads per block to be a multiple of 32 threads. Between 128 and 256      
+          threads per block is a good initial range for experimentation. Use smaller thread blocks rather than one      
+          large thread block per multiprocessor if latency affects performance.  This is particularly beneficial to     
+          kernels that frequently call __syncthreads(). See the Hardware Model                                          
+          (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for more      
+          details on launch configurations.                                                                             
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,16,2,32,946.530000,60359,45.750000,5.120000,63.42,91.490000,33.160000,58214,16.290000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,46.570000,14.900000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,16,4,64,948.480000,58517,47.210000,5.260000,61.47,94.430000,28.710000,56265,16.790000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,90.520000,28.970000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,16,8,128,954.670000,58364,47.210000,5.280000,60.93,94.430000,24.250000,56080,16.850000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,90.370000,28.920000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,16,16,256,959.780000,58945,46.770000,5.260000,61.28,93.550000,21.270000,56184,16.670000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,88.630000,28.360000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 11.37%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (88.6%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,16,32,512,954.280000,59137,46.490000,5.230000,61.86,92.990000,16.560000,56012,16.610000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,85.170000,27.250000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 14.83%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (85.2%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,16,64,1024,948.310000,63479,43.340000,4.810000,66.59,86.680000,15.570000,56609,15.520000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,87.470000,27.990000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.53%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.5%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,32,1,32,958.720000,110768,47.970000,2.790000,115.33,95.940000,34.870000,108337,8.820000,32,8192,22,0.032002,0,0.000000,0,17.070000,16,84,16,32,16,50.000000,47.890000,15.330000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 50%                                                                                       
+          The 4.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 8. This kernel's theoretical occupancy (50.0%) is limited by the number of blocks that    
+          can fit on the SM. This kernel's theoretical occupancy (50.0%) is limited by the required amount of shared    
+          memory.                                                                                                       
+"
+./heat_equation_solver/build,gpu_kernel,32,2,64,929.020000,110748,48.200000,2.720000,118.4,96.400000,29.550000,107463,8.880000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,91.480000,29.270000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,32,4,128,930.360000,110419,48.410000,2.760000,117.47,96.830000,26.640000,107085,8.940000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,91.220000,29.190000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,32,8,256,935.090000,111221,48.050000,2.730000,117.76,96.100000,25.220000,107116,8.880000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,90.190000,28.860000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,32,16,512,947.530000,114068,46.850000,2.660000,119.1,93.690000,23.280000,108381,8.660000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,86.940000,27.820000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 13.06%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (86.9%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,32,32,1024,933.770000,116618,45.690000,2.610000,123.71,91.390000,22.250000,106687,8.460000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,81.280000,26.010000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 18.72%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (81.3%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,64,1,64,927.120000,111910,47.900000,2.700000,119.58,95.810000,36.100000,108335,8.810000,64,4096,22,0.032002,0,0.000000,0,8.530000,16,42,16,16,32,100.000000,91.120000,29.160000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,64,2,128,932.380000,110668,48.260000,2.740000,117.57,96.520000,29.300000,107260,8.920000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,91.060000,29.140000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,64,4,256,931.600000,110601,48.130000,2.740000,117.95,96.270000,26.540000,107252,8.900000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,89.930000,28.780000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 10.07%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (89.9%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,64,8,512,943.980000,115682,46.340000,2.650000,121.25,92.680000,24.140000,109450,8.540000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,87.490000,28.000000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.51%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.5%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,64,16,1024,938.040000,117114,45.470000,2.590000,123.74,90.940000,22.680000,107264,8.420000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,81.720000,26.150000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 18.28%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (81.7%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,128,1,128,928.860000,111642,47.860000,2.700000,119.17,95.710000,35.470000,108175,8.830000,128,2048,22,0.032002,0,0.000000,0,8.530000,16,21,16,8,32,100.000000,91.260000,29.200000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,128,2,256,935.510000,111491,47.850000,2.710000,118.11,95.700000,28.870000,107831,8.850000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,90.610000,29.000000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,128,4,512,926.910000,115925,46.330000,2.610000,124.03,92.650000,25.310000,111233,8.500000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,87.890000,28.130000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.11%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.9%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,128,8,1024,930.690000,116907,45.540000,2.590000,124.7,91.080000,23.930000,106793,8.420000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,81.060000,25.940000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 18.94%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (81.1%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,256,1,256,922.510000,113542,47.370000,2.650000,122.27,94.730000,41.040000,110186,8.670000,256,1024,22,0.032002,0,0.000000,0,8.530000,16,10,16,4,32,100.000000,90.030000,28.810000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 "
+./heat_equation_solver/build,gpu_kernel,256,2,512,942.300000,118623,45.830000,2.560000,124.7,91.660000,29.750000,111333,8.320000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,87.340000,27.950000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.66%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.3%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,256,4,1024,923.840000,119297,44.930000,2.540000,128.1,89.860000,24.990000,107616,8.260000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,79.390000,25.410000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 20.61%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (79.4%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,512,1,512,927.610000,122627,45.310000,2.460000,130.98,90.620000,43.650000,116002,8.050000,512,512,22,0.032002,0,0.000000,0,8.530000,16,5,16,2,32,100.000000,87.580000,28.030000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 12.42%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (87.6%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,512,2,1024,936.530000,124942,44.520000,2.410000,132.7,89.030000,36.690000,113302,7.870000,1,256,22,0.032002,0,0.000000,0,8.530000,16,2,16,1,32,100.000000,79.840000,25.550000,N/A,N/A,"OPT   This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance 
+          of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate    
+          latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.                 
+OPT   Est. Local Speedup: 20.16%                                                                                    
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (79.8%) can be the     
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can   
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices   
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on     
+          optimizing occupancy.                                                                                         
+"
+./heat_equation_solver/build,gpu_kernel,1024,1,1024,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
