@@ -5,6 +5,10 @@ from queue import Queue
 from layers import DenseLayer, SoftmaxLayer, AttentionLayer
 from utils import cross_entropy
 import json
+import onnx
+from onnx import helper, TensorProto
+import onnxruntime as ort
+from onnx import helper, TensorProto, numpy_helper
 
 class SequentialNetwork:
     def __init__(self, layers=None, delta=None, stream=None, max_batch_size=32, max_streams=10, epochs=10):
@@ -316,3 +320,133 @@ class SequentialNetwork:
                 })
             details.append(layer_info)
         return details
+    
+    
+    def export_onnx(self, filename, input_shape):
+        inputs = []
+        outputs = []
+        nodes = []
+        initializers = []
+
+        input_name = "input"
+        inputs.append(helper.make_tensor_value_info(input_name, TensorProto.FLOAT, input_shape))
+        last_output = input_name
+        last_shape = input_shape
+
+        for i, layer in enumerate(self.network):
+            if isinstance(layer, DenseLayer):
+                weight_name = f"weight_{i}"
+                bias_name = f"bias_{i}"
+                output_name = f"dense_output_{i}"
+
+                weights = layer.weights.get()
+                bias = layer.b.get()
+
+                initializers.append(numpy_helper.from_array(weights, name=weight_name))
+                initializers.append(numpy_helper.from_array(bias, name=bias_name))
+
+                node = helper.make_node(
+                    "Gemm",
+                    inputs=[last_output, weight_name, bias_name],
+                    outputs=[output_name],
+                    name=f"dense_{i}"
+                )
+                nodes.append(node)
+
+                last_shape = (last_shape[0], weights.shape[0])  # Update shape
+
+                if layer.relu:
+                    relu_output = f"relu_output_{i}"
+                    relu_node = helper.make_node(
+                        "Relu",
+                        inputs=[output_name],
+                        outputs=[relu_output],
+                        name=f"relu_{i}"
+                    )
+                    nodes.append(relu_node)
+                    last_output = relu_output
+                elif layer.sigmoid:
+                    sigmoid_output = f"sigmoid_output_{i}"
+                    sigmoid_node = helper.make_node(
+                        "Sigmoid",
+                        inputs=[output_name],
+                        outputs=[sigmoid_output],
+                        name=f"sigmoid_{i}"
+                    )
+                    nodes.append(sigmoid_node)
+                    last_output = sigmoid_output
+                else:
+                    last_output = output_name
+
+            elif isinstance(layer, SoftmaxLayer):
+                softmax_output = f"softmax_output_{i}"
+                softmax_node = helper.make_node(
+                    "Softmax",
+                    inputs=[last_output],
+                    outputs=[softmax_output],
+                    name=f"softmax_{i}"
+                )
+                nodes.append(softmax_node)
+                last_output = softmax_output
+
+            elif isinstance(layer, AttentionLayer):
+                q_weight = f"q_weight_{i}"
+                k_weight = f"k_weight_{i}"
+                v_weight = f"v_weight_{i}"
+                o_weight = f"o_weight_{i}"
+
+                q_weights = layer.W_Q.weights.get()
+                k_weights = layer.W_K.weights.get()
+                v_weights = layer.W_V.weights.get()
+                o_weights = layer.W_O.weights.get()
+
+                initializers.extend([
+                    numpy_helper.from_array(q_weights, name=q_weight),
+                    numpy_helper.from_array(k_weights, name=k_weight),
+                    numpy_helper.from_array(v_weights, name=v_weight),
+                    numpy_helper.from_array(o_weights, name=o_weight)
+                ])
+
+                q_output = f"q_output_{i}"
+                k_output = f"k_output_{i}"
+                v_output = f"v_output_{i}"
+
+                nodes.extend([
+                    helper.make_node("MatMul", [last_output, q_weight], [q_output], name=f"q_matmul_{i}"),
+                    helper.make_node("MatMul", [last_output, k_weight], [k_output], name=f"k_matmul_{i}"),
+                    helper.make_node("MatMul", [last_output, v_weight], [v_output], name=f"v_matmul_{i}")
+                ])
+
+                # Transpose K
+                k_transpose = f"k_transpose_{i}"
+                nodes.append(helper.make_node("Transpose", inputs=[k_output], outputs=[k_transpose], name=f"k_transpose_{i}"))
+
+                attention_scores = f"attention_scores_{i}"
+                attention_probs = f"attention_probs_{i}"
+                attention_output = f"attention_output_{i}"
+
+                scale_value = np.float32(np.sqrt(q_weights.shape[0]))
+                scale_name = f"scale_{i}"
+                initializers.append(numpy_helper.from_array(np.array(scale_value), name=scale_name))
+
+                nodes.extend([
+                    helper.make_node("MatMul", [q_output, k_transpose], [f"qk_matmul_{i}"], name=f"qk_matmul_{i}"),
+                    helper.make_node("Div", [f"qk_matmul_{i}", scale_name], [attention_scores], name=f"scale_scores_{i}"),
+                    helper.make_node("Softmax", [attention_scores], [attention_probs], name=f"attention_softmax_{i}"),
+                    helper.make_node("MatMul", [attention_probs, v_output], [attention_output], name=f"attention_output_{i}")
+                ])
+
+                final_output = f"final_output_{i}"
+                nodes.append(helper.make_node("MatMul", [attention_output, o_weight], [final_output], name=f"output_projection_{i}"))
+
+                last_output = final_output
+                last_shape = (last_shape[0], o_weights.shape[0])  # Update shape
+
+        outputs.append(helper.make_tensor_value_info(last_output, TensorProto.FLOAT, last_shape))
+
+        graph = helper.make_graph(
+            nodes, "SequentialNetwork", inputs, outputs, initializers
+        )
+
+        model = helper.make_model(graph)
+        onnx.save(model, filename)

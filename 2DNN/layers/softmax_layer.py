@@ -26,3 +26,7 @@ class SoftmaxLayer:
         mean_ker(self.num, y, y, batch_size,
                  block=(32, 1, 1), grid=(int(np.ceil(batch_size / 32)), 1, 1), stream=stream)
         return y
+    def get_onnx_attributes(self):
+        return {
+            "num": self.num
+        }

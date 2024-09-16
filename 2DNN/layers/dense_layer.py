@@ -53,3 +53,10 @@ class DenseLayer:
                  self.weights, self.b, x, y, batch_size, w_t, b_t,
                  delta, block=self.block, grid=self.grid, stream=stream)
         return y
+    def get_onnx_attributes(self):
+        return {
+            "weights": self.weights.get(),
+            "bias": self.b.get(),
+            "relu": self.relu,
+            "sigmoid": self.sigmoid
+        }

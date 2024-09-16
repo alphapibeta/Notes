@@ -106,3 +106,11 @@ class AttentionLayer:
             y = y_out
 
         return y
+    def get_onnx_attributes(self):
+        return {
+            "num_heads": self.num_heads,
+            "W_Q": self.W_Q.weights,
+            "W_K": self.W_K.weights,
+            "W_V": self.W_V.weights,
+            "W_O": self.W_O.weights
+        }

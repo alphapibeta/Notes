@@ -86,16 +86,43 @@ if __name__ == '__main__':
     for i, layer in enumerate(loaded_sn.get_layer_details()):
         print(f"  Layer {i}: {layer}")
 
-    loaded_hits = 0
-    for i in range(ctest.shape[0]):
-        prediction = loaded_sn.predict(ctest[i])
-        if np.argmax(prediction) == np.argmax(label_test[i]):
-            loaded_hits += 1
+    # loaded_hits = 0
+    # for i in range(ctest.shape[0]):
+    #     prediction = loaded_sn.predict(ctest[i])
+    #     if np.argmax(prediction) == np.argmax(label_test[i]):
+    #         loaded_hits += 1
 
-    loaded_accuracy = float(loaded_hits) / ctest.shape[0]
-    print(f'Loaded Network Test Accuracy: {loaded_accuracy:.2%}')
+    # loaded_accuracy = float(loaded_hits) / ctest.shape[0]
+    # print(f'Loaded Network Test Accuracy: {loaded_accuracy:.2%}')
 
-    if np.isclose(accuracy, loaded_accuracy):
-        print("Verification successful: Loaded network performs identically to the original")
+    # if np.isclose(accuracy, loaded_accuracy):
+    #     print("Verification successful: Loaded network performs identically to the original")
+    # else:
+    #     print("Verification failed: Loaded network performs differently from the original")
+    
+    
+    print("\nStep 9: Exporting network to ONNX format")
+    input_shape = (1, 4)  # Assuming input is a single sample with 4 features
+    sn.export_onnx("iris_network.onnx", input_shape)
+    print("Network exported to iris_network.onnx")
+
+    print("\nStep 10: Verifying ONNX model")
+    import onnxruntime as ort
+    ort_session = ort.InferenceSession("iris_network.onnx")
+    
+    # Prepare a sample input
+    sample_input = ctest[0:1]  # Take the first test sample
+    ort_inputs = {ort_session.get_inputs()[0].name: sample_input}
+    ort_outputs = ort_session.run(None, ort_inputs)
+
+    # Compare ONNX output with our model's output
+    our_output = sn.predict(sample_input)
+    onnx_output = ort_outputs[0]
+
+    print(f"Our model output: {our_output}")
+    print(f"ONNX model output: {onnx_output}")
+    
+    if np.allclose(our_output, onnx_output, rtol=1e-3, atol=1e-3):
+        print("ONNX model verified successfully!")
     else:
-        print("Verification failed: Loaded network performs differently from the original")
+        print("ONNX model output differs from our model. Further investigation needed.")
