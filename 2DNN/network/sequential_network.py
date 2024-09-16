@@ -4,6 +4,7 @@ import pycuda.driver as drv
 from queue import Queue
 from layers import DenseLayer, SoftmaxLayer, AttentionLayer
 from utils import cross_entropy
+import json
 
 class SequentialNetwork:
     def __init__(self, layers=None, delta=None, stream=None, max_batch_size=32, max_streams=10, epochs=10):
@@ -221,3 +222,97 @@ class SequentialNetwork:
                     self.network[i].weights.set(new_weights)
                     self.network[i].b.set(new_bias)
                     grad_index += 1
+    
+    
+    
+    def export_network(self, filename):
+        """Export the network structure and weights to a JSON file."""
+        network_data = {
+            "layers": [],
+            "delta": self.delta,
+            "max_batch_size": self.max_batch_size,
+            "max_streams": self.max_streams,
+            "epochs": self.epochs
+        }
+
+        for i, layer in enumerate(self.network):
+            layer_data = {
+                "type": self.network_summary[i][0],
+                "num_inputs": self.network_summary[i][1],
+                "num_outputs": self.network_summary[i][2]
+            }
+
+            if isinstance(layer, DenseLayer):
+                layer_data.update({
+                    "weights": layer.weights.get().tolist(),
+                    "bias": layer.b.get().tolist(),
+                    "relu": bool(layer.relu),
+                    "sigmoid": bool(layer.sigmoid)
+                })
+            elif isinstance(layer, AttentionLayer):
+                layer_data.update({
+                    "num_heads": layer.num_heads
+                })
+
+            network_data["layers"].append(layer_data)
+
+        with open(filename, 'w') as f:
+            json.dump(network_data, f, indent=2)
+
+    @classmethod
+    def load_network(cls, filename):
+        """Load a network from a JSON file."""
+        with open(filename, 'r') as f:
+            network_data = json.load(f)
+
+        network = cls(
+            delta=network_data["delta"],
+            max_batch_size=network_data["max_batch_size"],
+            max_streams=network_data["max_streams"],
+            epochs=network_data["epochs"]
+        )
+
+        for layer_data in network_data["layers"]:
+            if layer_data["type"] == "dense":
+                network.add_layer({
+                    "type": "dense",
+                    "num_inputs": layer_data["num_inputs"],
+                    "num_outputs": layer_data["num_outputs"],
+                    "relu": layer_data["relu"],
+                    "sigmoid": layer_data["sigmoid"],
+                    "weights": np.array(layer_data["weights"]),
+                    "bias": np.array(layer_data["bias"])
+                })
+            elif layer_data["type"] == "attention":
+                network.add_layer({
+                    "type": "attention",
+                    "num_inputs": layer_data["num_inputs"],
+                    "num_outputs": layer_data["num_outputs"],
+                    "num_heads": layer_data["num_heads"]
+                })
+            elif layer_data["type"] == "softmax":
+                network.add_layer({"type": "softmax"})
+
+        return network
+
+    def get_layer_details(self):
+        """Return detailed information about each layer in the network."""
+        details = []
+        for i, layer in enumerate(self.network):
+            layer_info = {
+                "type": self.network_summary[i][0],
+                "num_inputs": self.network_summary[i][1],
+                "num_outputs": self.network_summary[i][2]
+            }
+            if isinstance(layer, DenseLayer):
+                layer_info.update({
+                    "activation": "ReLU" if layer.relu else ("Sigmoid" if layer.sigmoid else "None"),
+                    "weights_shape": layer.weights.shape,
+                    "bias_shape": layer.b.shape
+                })
+            elif isinstance(layer, AttentionLayer):
+                layer_info.update({
+                    "num_heads": layer.num_heads
+                })
+            details.append(layer_info)
+        return details
