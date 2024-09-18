@@ -140,3 +140,4 @@ Layer 2: {'name': 'dense_3', 'type': 'dense', 'num_inputs': 10, 'num_outputs': 3
 Layer 3: {'name': 'softmax_4', 'type': 'softmax', 'num_inputs': 3, 'num_outputs': 3, 'activation': 'Softmax'}
 
 ```
+
