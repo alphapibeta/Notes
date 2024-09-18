@@ -54,6 +54,16 @@ This project implements a custom neural network framework to classify Iris flowe
 
 You can modify the network architecture in `iris_train_main.py` by adding or removing layers. The `SequentialNetwork` class supports easy addition of new layer types.
 
+```
+print("\nStep 3: Creating Sequential Network")
+    sn = SequentialNetwork(max_batch_size=100)
+    sn.add_layer({'type': 'dense', 'num_inputs': 4, 'num_outputs': 32, 'relu': True, 'sigmoid': False, 'weights': None, 'bias': None})
+    sn.add_layer({'type': 'dense', 'num_inputs': 32, 'num_outputs': 10, 'relu': True, 'sigmoid': False, 'weights': None, 'bias': None})
+    sn.add_layer({'type': 'dense', 'num_inputs': 32, 'num_outputs': 3, 'relu': False, 'sigmoid': False, 'weights': None, 'bias': None})
+    sn.add_layer({'type': 'softmax'})
+```
+
+
 
 
 python3 iris_train_main.py
