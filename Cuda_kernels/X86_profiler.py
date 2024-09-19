@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import argparse
 import os
+import signal
 
 # Function to extract duration (support for microseconds and milliseconds)
 def extract_duration(output):
@@ -16,17 +17,12 @@ def extract_duration(output):
         return float(msec_match.group(1)) * 1000  # Convert milliseconds to microseconds
     return "N/A"
 
-
-
-
 def parse_kernel_args(kernel_args):
     parsed_args = {}
     for arg in kernel_args:
         key, value = arg.split("=")
         parsed_args[key] = value
     return parsed_args
-
-
 
 # Function to extract metrics with consideration for unit conversion and format float values to 4 decimal places
 def extract_metric_with_unit(output, regex, data_type="float", unit="default"):
@@ -53,8 +49,6 @@ def extract_metric_with_unit(output, regex, data_type="float", unit="default"):
             return value  # Return string values as is
     return "N/A"
 
-
-
 # Function to extract WRN/INF/OPT multi-line messages
 def extract_wrn_inf_opt(output):
     """Extracts multi-line WRN, INF, and OPT messages."""
@@ -64,8 +58,6 @@ def extract_wrn_inf_opt(output):
     return "\n".join(wrn_matches) if wrn_matches else "N/A", \
            "\n".join(inf_matches) if inf_matches else "N/A", \
            "\n".join(opt_matches) if opt_matches else "N/A"
-
-
 
 # Function to parse the Nsight Compute output and extract relevant metrics
 def parse_ncu_output(output, kernel_name, build_dir, block_thread_x, block_thread_y):
@@ -117,8 +109,6 @@ def parse_ncu_output(output, kernel_name, build_dir, block_thread_x, block_threa
 
     return data
 
-
-
 # Function to run Nsight Compute for a given kernel and build directory
 def run_ncu_and_parse(build_dir, kernel_name, exec_name, kernel_args, block_thread_x=None, block_thread_y=None, output_file=None):
     # Ensure the path to the executable is correct
@@ -145,15 +135,25 @@ def run_ncu_and_parse(build_dir, kernel_name, exec_name, kernel_args, block_thre
     # Build the ncu command for X86
     ncu_cmd = f"ncu --kernel-name {kernel_name} --launch-skip 0 --launch-count 1 {exec_path} {kernel_args_dynamic}"
     
-    # Capture the output
-    ncu_output = subprocess.getoutput(ncu_cmd)
-    
+    try:
+        # Set a timeout for the ncu command
+        ncu_output = subprocess.check_output(ncu_cmd, shell=True, timeout=120, text=True)  # Timeout after 120 seconds
+    except subprocess.TimeoutExpired:
+        print(f"ERROR: Nsight Compute for {kernel_name} timed out.")
+        return {}
+    except subprocess.CalledProcessError as e:
+        print(f"ERROR: Nsight Compute for {kernel_name} failed with error: {e}")
+        return {}
+
     # Write the Nsight Compute output to a text file, separating each execution
     if output_file:
-        with open(output_file, "a") as f:
-            f.write(f"Running Nsight Compute for kernel: {kernel_name} in directory: {build_dir} with args: {kernel_args_dynamic}\n")
-            f.write(ncu_output)
-            f.write("\n" + "=" * 100 + "\n")
+        try:
+            with open(output_file, "a") as f:
+                f.write(f"Running Nsight Compute for kernel: {kernel_name} in directory: {build_dir} with args: {kernel_args_dynamic}\n")
+                f.write(ncu_output)
+                f.write("\n" + "=" * 100 + "\n")
+        except IOError as e:
+            print(f"ERROR: Failed to write Nsight Compute output to {output_file}: {e}")
     
     # Extract relevant sections from the output and return the parsed data
     return parse_ncu_output(ncu_output, kernel_name, build_dir, block_thread_x, block_thread_y)
@@ -174,7 +174,9 @@ def profile_kernels_with_sizes(build_dirs, kernel_names, exec_name, output_file,
                     total_threads = block_thread_x * block_thread_y
                     if total_threads <= 1024:
                         # Run Nsight Compute with the parsed and dynamic kernel arguments
-                        results.append(run_ncu_and_parse(build_dir, kernel_name, exec_name, parsed_kernel_args, block_thread_x, block_thread_y, output_file))
+                        result = run_ncu_and_parse(build_dir, kernel_name, exec_name, parsed_kernel_args, block_thread_x, block_thread_y, output_file)
+                        if result:
+                            results.append(result)
 
     # Convert results to a DataFrame for better display and analysis
     df = pd.DataFrame(results)
