@@ -1,5 +1,5 @@
 
-# Comprehensive README for Convolution Project
+# README for Convolution Project
 
 ## Section 1: Overview and Introduction
 
