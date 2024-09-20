@@ -51,8 +51,8 @@ This project implements a 2D convolution operation using both CPU and GPU (CUDA)
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd conv
+git clone https://github.com/alphapibeta/Notes.git
+cd Cuda_kernels/conv
 ```
 
 ### Step 2: Create a Build Directory
@@ -106,6 +106,7 @@ The X86 Profiler script profiles the performance of the convolution kernel using
 ### Step 1: Running the Profiler
 
 ```bash
+cd /path/to/Cuda_kernels/
 python3 X86_profiler.py --build_dirs ./conv/build --kernels convolution2DKernel --exec_name ./convolution --kernel_args block-x=16 block-y=16 N=1 nsteps=3 ksteps=1024 jsteps=1024 l=50 m=2 n=2 o=16 --output_file test_conv2d_output_x86
 ```
 
@@ -116,7 +117,7 @@ This command will run the profiler with the given configuration and save the res
 #### Run the Streamlit App
 
 ```bash
-streamlit run x86_streamlit_app.py ./x86_results/test_conv2d_output_x86.csv
+streamlit run x86_streamlit_app.py ./x86_results/test_conv2d_output_x86.csv   #Path where ever you have saved it 
 ```
 
 This will launch the Streamlit app, which you can view in your browser.
