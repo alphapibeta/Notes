@@ -10,11 +10,13 @@ def extract_duration(output):
     """Extracts duration in microseconds, converts from milliseconds if necessary."""
     usec_match = re.search(r"Duration\s+usecond\s+([\d.]+)", output)
     msec_match = re.search(r"Duration\s+msecond\s+([\d.]+)", output)
-    
+    sec_match = re.search(r"Duration\s+second\s+([\d.]+)", output)
     if usec_match:
         return float(usec_match.group(1))  # microseconds
     elif msec_match:
         return float(msec_match.group(1)) * 1000  # Convert milliseconds to microseconds
+    elif sec_match:
+        return float(sec_match.group(1)) * 1000000  # Convert milliseconds to microseconds
     return "N/A"
 
 def parse_kernel_args(kernel_args):
@@ -71,7 +73,7 @@ def parse_ncu_output(output, kernel_name, build_dir, block_thread_x, block_threa
         "blockSizeY": block_thread_y,
         "totalThreads": block_thread_x * block_thread_y if block_thread_x and block_thread_y else "N/A",
         
-        "smFrequencyCyclePerUsecond": extract_metric_with_unit(output, r"SM Frequency\s+cycle/(?:usecond|nsecond)\s+([\d.]+)", "float"),
+        "smFrequencyCyclePerUsecond": extract_metric_with_unit(output, r"SM Frequency\s+cycle/(?:usecond|nsecond|second)\s+([\d.]+)", "float"),
         "elapsedCycles": extract_metric_with_unit(output, r"Elapsed Cycles\s+cycle\s+([\d,]+)", "unsigned int"),
         "memoryThroughputPercent": extract_metric_with_unit(output, r"Memory Throughput\s+%\s+([\d.]+)", "float"),
         "dramThroughputPercent": extract_metric_with_unit(output, r"DRAM Throughput\s+%\s+([\d.]+)", "float"),
