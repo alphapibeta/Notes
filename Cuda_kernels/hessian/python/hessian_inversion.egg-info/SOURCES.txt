@@ -1,0 +1,10 @@
+README.md
+setup.py
+python/hessian_inversion/__init__.py
+python/hessian_inversion/hessian_inversion.py
+python/hessian_inversion.egg-info/PKG-INFO
+python/hessian_inversion.egg-info/SOURCES.txt
+python/hessian_inversion.egg-info/dependency_links.txt
+python/hessian_inversion.egg-info/not-zip-safe
+python/hessian_inversion.egg-info/top_level.txt
+tests/test_hessian_inversion.py
