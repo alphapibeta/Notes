@@ -5,13 +5,15 @@
 2. [Project Structure](#project-structure)
 3. [Theoretical Background](#theoretical-background)
 4. [Implementation Details](#implementation-details)
-5. [Precision Analysis](#precision-analysis)
-6. [Performance Analysis](#performance-analysis)
-7. [Compilation and Execution Guide](#compilation-and-execution-guide)
-8. [Result Interpretation](#result-interpretation)
-9. [Challenges and Solutions](#challenges-and-solutions)
-10. [Real-world Applications](#real-world-applications)
-11. [Limitations and Future Work](#limitations-and-future-work)
+5. [Python Integration and Pybind11](#python-integration-and-pybind11)
+6. [Precision Analysis](#precision-analysis)
+7. [Performance Analysis](#performance-analysis)
+8. [Compilation and Execution Guide](#compilation-and-execution-guide)
+9. [Python Package Installation and Usage](#python-package-installation-and-usage)
+10. [Result Interpretation](#result-interpretation)
+11. [Challenges and Solutions](#challenges-and-solutions)
+12. [Real-world Applications](#real-world-applications)
+13. [Limitations and Future Work](#limitations-and-future-work)
 
 ## Project Overview
 
@@ -127,6 +129,72 @@ void HessianInversionGPU<float>::invert() {
 }
 ```
 
+
+## Python Integration and Pybind11
+
+### Overview
+
+To make the Hessian matrix inversion functionality accessible from Python, we have integrated **Pybind11** to expose the C++ functions as Python modules. This allows for easier usability in Python-based projects and provides a familiar interface for Python developers to leverage GPU-accelerated matrix inversion.
+
+The Python package allows you to call both the CPU and GPU versions of the Hessian matrix inversion and select between float and double precision when working with the GPU version.
+
+### Pybind11 Integration
+
+1. **CPU Binding**: 
+   The CPU binding is created via a simple Pybind11 wrapper that exposes the existing C++ functionality to Python. 
+
+   ```cpp
+   PYBIND11_MODULE(hessian_inversion_cpu_py, m) {
+       py::class_<HessianInversionCPU<double>>(m, "HessianInversionCPU")
+           .def(py::init<int>())
+           .def("setMatrix", &HessianInversionCPU<double>::setMatrix)
+           .def("invert", &HessianInversionCPU<double>::invert)
+           .def("getInverse", &HessianInversionCPU<double>::getInverse);
+   }
+   ```
+
+2. **GPU Binding**:
+   Similarly, the GPU implementation is wrapped via Pybind11. Separate bindings are provided for both **float** and **double** precision versions.
+
+   ```cpp
+   PYBIND11_MODULE(hessian_inversion_gpu_py, m) {
+       py::class_<HessianInversionGPU<float>>(m, "HessianInversionGPU_float")
+           .def(py::init<int>())
+           .def("setMatrix", &HessianInversionGPU<float>::setMatrix)
+           .def("invert", &HessianInversionGPU<float>::invert)
+           .def("getInverse", &HessianInversionGPU<float>::getInverse);
+   
+       py::class_<HessianInversionGPU<double>>(m, "HessianInversionGPU_double")
+           .def(py::init<int>())
+           .def("setMatrix", &HessianInversionGPU<double>::setMatrix)
+           .def("invert", &HessianInversionGPU<double>::invert)
+           .def("getInverse", &HessianInversionGPU<double>::getInverse);
+   }
+   ```
+
+### Python Wrapper
+
+We provide a high-level Python interface for users, which abstracts the underlying C++ implementations. This interface allows users to select between CPU and GPU versions seamlessly.
+
+```python
+from hessian_inversion import cpu_inversion, gpu_inversion
+
+# Usage example:
+matrix = [[4.0, 2.0], [3.0, 1.0]]
+cpu_result = cpu_inversion(matrix)
+gpu_result = gpu_inversion(matrix, precision="double")
+```
+
+- **`cpu_inversion(matrix)`**: Runs the inversion on the CPU.
+- **`gpu_inversion(matrix, precision)`**: Runs the inversion on the GPU. The `precision` argument can be either `"float"` or `"double"`.
+
+
+
+
+
+
+
+
 ## Precision Analysis
 
 We implemented a hybrid comparison method to analyze the differences between CPU and GPU results:
@@ -237,6 +305,7 @@ Analysis:
 2. Double precision on GPU is ~2.7x slower than float precision
 3. CPU performance is similar for both precisions, likely due to hardware-level optimizations
 
+
 ## Compilation and Execution Guide
 
 1. Prerequisites:
@@ -263,6 +332,50 @@ Analysis:
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
      set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -use_fast_math")
      ```
+
+## Python Package Installation and Usage
+
+### Installing the Package
+
+Once compiled, you can install the Python package using:
+
+```bash
+python setup.py install
+```
+
+This will install the package into your Python environment, allowing you to import and use the `hessian_inversion` module in Python scripts or interactive sessions.
+
+### Using the Python API
+
+Here’s an example of using the Python API to perform matrix inversion on both CPU and GPU:
+
+```python
+import numpy as np
+from hessian_inversion import cpu_inversion, gpu_inversion
+
+# Generate a random matrix
+matrix = np.random.rand(5, 5).tolist()
+
+# Perform CPU inversion
+cpu_result = cpu_inversion(matrix)
+
+# Perform GPU inversion (double precision)
+gpu_result = gpu_inversion(matrix, precision="double")
+
+# Print results
+print("CPU Inversion Result:", cpu_result)
+print("GPU Inversion (Double Precision) Result:", gpu_result)
+```
+
+
+
+
+
+
+
+
+
+
 
 ## Result Interpretation
 
