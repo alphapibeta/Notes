@@ -343,5 +343,3 @@ Analysis:
 5. Benchmarking:
    - Limited to specific hardware
    - Future: Create a comprehensive benchmarking suite across various GPU architectures
-
-Remember: The choice between float and double precision, and between CPU and GPU implementation, should always be based on your specific requirements for speed and accuracy. This project provides a flexible framework for making and testing those choices in the context of Hessian matrix inversion.
