@@ -1,0 +1,20 @@
+@PACKAGE_INIT@
+
+set(TENSOR_LIBRARY_DIR "${CMAKE_CURRENT_LIST_DIR}")
+
+include(CMakeFindDependencyMacro)
+
+# Dependencies can be added here
+find_dependency(Threads)
+
+# Declare the shared library as imported
+add_library(TensorLibrary::tensor_lib_shared SHARED IMPORTED)
+set_target_properties(TensorLibrary::tensor_lib_shared PROPERTIES
+    IMPORTED_LOCATION "${TENSOR_LIBRARY_DIR}/libtensor_lib_shared.so"
+    INTERFACE_INCLUDE_DIRECTORIES "${TENSOR_LIBRARY_DIR}/../include"  # Adjusted to point to the correct include path
+)
+
+# Optionally, set the version
+set_target_properties(TensorLibrary::tensor_lib_shared PROPERTIES
+    IMPORTED_IMPLIB "${TENSOR_LIBRARY_DIR}/libtensor_lib_shared.so"
+)
