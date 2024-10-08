@@ -1,39 +1,34 @@
 #include <iostream>
 #include "TensorFactory.h"
+#include <random>
+
+// Function to initialize the tensor with random values (for both CPU and GPU)
+template<typename T, int Rows, int Cols>
+void initializeRandomTensor(std::unique_ptr<Tensor<T>>& tensor) {
+    std::default_random_engine generator;
+    std::uniform_real_distribution<T> distribution(0.0, 1.0); 
+    for (int i = 0; i < Rows; ++i) {
+        for (int j = 0; j < Cols; ++j) {
+            (*tensor)[{i, j}] = distribution(generator); // Initialize tensor elements
+        }
+    }
+}
 
 void testTensorCreation() {
     constexpr int Rows = 4;
     constexpr int Cols = 4;
 
-    // Create a CPU tensor using the static library
-    auto cpuTensorStatic = TensorFactory<float>::createTensor({Rows, Cols}, Device::CPU);
-    for (int i = 0; i < Rows; ++i) {
-        for (int j = 0; j < Cols; ++j) {
-            (*cpuTensorStatic)[{i, j}] = static_cast<float>(i * Cols + j);
-        }
-    }
-    std::cout << "Static Library - CPU Tensor:" << std::endl;
-    cpuTensorStatic->print();
+    // Create and initialize CPU tensor using the shared library
+    auto cpuTensor = TensorFactory<float>::createTensor({Rows, Cols}, Device::CPU);
+    initializeRandomTensor<float, Rows, Cols>(cpuTensor); // Initialize CPU tensor with random values
+    std::cout << "CPU Tensor (Shared Library):" << std::endl;
+    cpuTensor->print();
 
-    // Create a GPU tensor using the static library
-    auto gpuTensorStatic = TensorFactory<float>::createTensor({Rows, Cols}, Device::CUDA);
-    std::cout << "Static Library - GPU Tensor:" << std::endl;
-    gpuTensorStatic->print();
-
-    // Create a CPU tensor using the shared library
-    auto cpuTensorShared = TensorFactory<float>::createTensor({Rows, Cols}, Device::CPU);
-    for (int i = 0; i < Rows; ++i) {
-        for (int j = 0; j < Cols; ++j) {
-            (*cpuTensorShared)[{i, j}] = static_cast<float>(i * Cols + j + 10);  // Different values
-        }
-    }
-    std::cout << "Shared Library - CPU Tensor:" << std::endl;
-    cpuTensorShared->print();
-
-    // Create a GPU tensor using the shared library
-    auto gpuTensorShared = TensorFactory<float>::createTensor({Rows, Cols}, Device::CUDA);
-    std::cout << "Shared Library - GPU Tensor:" << std::endl;
-    gpuTensorShared->print();
+    // Create and initialize GPU tensor using the shared library
+    auto gpuTensor = TensorFactory<float>::createTensor({Rows, Cols}, Device::CUDA);
+    initializeRandomTensor<float, Rows, Cols>(gpuTensor); // Initialize GPU tensor with random values
+    std::cout << "GPU Tensor (Shared Library):" << std::endl;
+    gpuTensor->print();
 }
 
 int main() {

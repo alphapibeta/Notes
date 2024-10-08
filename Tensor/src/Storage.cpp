@@ -2,11 +2,14 @@
 
 template<typename T>
 Storage<T>::Storage(int size) : size(size) {
+    // Allocating memory for CPU using smart pointer
     data = std::make_unique<T[]>(size);
 }
 
 template<typename T>
-Storage<T>::~Storage() {}
+Storage<T>::~Storage() {
+    // No manual memory management required, unique_ptr will automatically handle it.
+}
 
 template<typename T>
 T& Storage<T>::operator[](int index) {
@@ -25,6 +28,6 @@ void Storage<T>::fill(T value) {
     }
 }
 
-// Explicit instantiation for float and double
+// Explicit template instantiations
 template class Storage<float>;
 template class Storage<double>;

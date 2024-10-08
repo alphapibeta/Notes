@@ -3,7 +3,7 @@
 
 #include "Tensor.h"
 #include "GPUTensor.h"
-#include "Device.h" 
+#include "Device.h"
 #include <memory>
 
 template<typename T>
@@ -12,4 +12,4 @@ public:
     static std::unique_ptr<Tensor<T>> createTensor(const std::vector<int>& shape, Device device);
 };
 
-#endif // TENSOR_FACTORY_H
+#endif  // TENSOR_FACTORY_H

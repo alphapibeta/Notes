@@ -36,29 +36,24 @@ set_target_properties(tensor_lib_shared PROPERTIES
     CUDA_ARCHITECTURES "75" # Adjust based on your GPU
 )
 
-# Specify the executable
-add_executable(tensor_program main.cpp)
+# Install the public headers
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
 
-# Link the shared library to the executable
-target_link_libraries(tensor_program tensor_lib_shared ${CUDA_LIBRARIES})
-
-# Install rules (optional)
+# Specify where to install the library
 install(TARGETS tensor_lib_shared
     EXPORT TensorLibTargets
-    LIBRARY DESTINATION lib
+    LIBRARY DESTINATION lib  # For shared library
     RUNTIME DESTINATION bin
 )
 
-install(FILES include/TensorLibrary.h DESTINATION include)
-
-# Exporting the targets
+# Exporting the targets (necessary for find_package)
 install(EXPORT TensorLibTargets
     FILE TensorLibTargets.cmake
     NAMESPACE Tensor::
     DESTINATION lib/cmake/Tensor
 )
 
-# Add CMake config for find_package
+# Generate config files for find_package
 include(CMakePackageConfigHelpers)
 
 # Write version file
@@ -75,8 +70,24 @@ configure_package_config_file(
     INSTALL_DESTINATION lib/cmake/Tensor
 )
 
+# Install the config files
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/TensorLibraryConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/TensorLibraryConfigVersion.cmake"
     DESTINATION lib/cmake/Tensor
+)
+
+set(CMAKE_INSTALL_PREFIX "/home/tesla/exp/Notes/Tensor/install")
+
+# -----------------------------------------------------
+# Add executable for the main.cpp file in the root directory
+# -----------------------------------------------------
+add_executable(tensor_main main.cpp)
+
+# Link the Tensor shared library and CUDA to the executable
+target_link_libraries(tensor_main tensor_lib_shared ${CUDA_LIBRARIES})
+
+# Specify where to install the main executable
+install(TARGETS tensor_main
+    RUNTIME DESTINATION bin
 )
